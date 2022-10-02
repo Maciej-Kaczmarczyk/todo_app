@@ -5,6 +5,7 @@ const TaskList = () => {
   const tasks = [
     {
       title: "Task 1",
+      importance: "high",
       steps: [
         {
           text: "a",
@@ -38,6 +39,7 @@ const TaskList = () => {
     },
     {
       title: "Task 2",
+      importance: "low",
       steps: [
         {
           text: "c",
