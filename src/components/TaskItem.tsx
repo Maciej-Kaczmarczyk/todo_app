@@ -2,32 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import autoAnimate from "@formkit/auto-animate";
 
-const Task = (props: { tasks: any }) => 
-{let tasks = props.tasks;
-const steps = tasks.steps;
+const Task = (props: any) =>{
+  
+  
+  let tasks = props.tasks;
+ 
 
-
-
-  const [status, setStatus] = useState(
-    steps.map((e: { checked: any }) => e.checked)
-  );
-
-  const stepsDone = (
-    (status.filter((i: boolean) => i === true).length / status.length) *
-    100
-  ).toFixed(0);
-
-  let progressColor: string = "";
-
-  if (parseFloat(stepsDone) <= 33) {
-    progressColor = "text-red-400";
-  }
-  if (parseFloat(stepsDone) > 33 && parseFloat(stepsDone) < 66) {
-    progressColor = "text-orange-400";
-  }
-  if (parseFloat(stepsDone) >= 66) {
-    progressColor = "text-green-400";
-  }
+  console.log(tasks);
 
 
   let importanceColor: string = "";
@@ -62,7 +43,7 @@ const steps = tasks.steps;
           onClick={reveal}
           className="flex items-center gap-3 collapse-title text-xl font-medium"
         >
-          <div
+          {/* <div
             // className="radial-progress text-green-400"
             className={`radial-progress ${progressColor}`}
             style={
@@ -74,16 +55,16 @@ const steps = tasks.steps;
             }
           >
             <p className="text-xs font-normal text-black">{stepsDone}%</p>
-          </div>
+          </div> */}
           <div>
-            <h2>{tasks.title}</h2>
+            <h2 className="py-1">{tasks.title}</h2>
             <div className="flex gap-3">
               <p className="text-xs font-normal">
-                Time left:{" "}
+                Time left:{' '}
                 <span className="text-green-400 font-semibold">2d</span>
               </p>
               <p className="text-xs font-normal">
-                Importance:{" "}
+                Importance:{' '}
                 <span className={`${importanceColor} font-semibold text-xs`}>
                   {tasks.importance}
                 </span>
@@ -95,7 +76,7 @@ const steps = tasks.steps;
         {show && (
           <div className="dropdown-content">
             <div className="flex-col ml-8">
-              <div className="flex-col items-center gap-2 mt-2">
+              {/* <div className="flex-col items-center gap-2 mt-2">
                 {steps.map((task: any) => {
                   return (
                     <div className="flex items-center gap-2" key={task.text}>
@@ -114,16 +95,13 @@ const steps = tasks.steps;
                     </div>
                   );
                 })}
-              </div>
+              </div> */}
             </div>
             <div className="p-5">
               <button
-                disabled={parseFloat(stepsDone) === 100 ? false : true}
+                // disabled={parseFloat(stepsDone) === 100 ? false : true}
                 className="btn btn-sm w-full bg-blue-600 hover:bg-blue-800 border-none"
-                onClick={() => {
-                  tasks = null
-                  console.log(tasks? true:false)
-                }}
+              onClick={() => props.deleteTask(props.index)}
               >
                 Complete
               </button>
